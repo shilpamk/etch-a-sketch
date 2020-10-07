@@ -17,13 +17,27 @@ function addHoverEffect() {
     this.style.background = "green";
 }
 
+// clear previous grid
 function resetGrid() {
+    let parent = document.getElementById('container');
+    while(parent.firstChild) {
+        parent.firstChild.remove();
+    }
+}
+
+let gridValue;
+let maxGridNum = 20;
+function promptNumber() {
+    gridValue = prompt(`Enter a numer between 1 and ${maxGridNum}`); 
+    if(gridValue < 1 || gridValue > maxGridNum) {
+        promptNumber();
+    }
+    resetGrid();
+    createGrid();
     
 }
 
-let gridValue = prompt("Enter a numer between 3 and 10");
-createGrid();
-let reset = document.getElementById('reset');
 
-reset.addEventListener('click', resetGrid());
-
+promptNumber();
+//let reset = document.getElementById('reset');
+//reset.addEventListener('click', resetGrid());
